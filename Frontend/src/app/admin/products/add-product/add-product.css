@@ -167,4 +167,4 @@ form {
   opacity: 0.6;
 }
 
-.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700}.checkbox-row input{width:18px;height:18px;accent-color:#6366f1}.muted{opacity:.45}
+.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700}.checkbox-row input{width:18px;height:18px;accent-color:#56664f}.muted{opacity:.45}

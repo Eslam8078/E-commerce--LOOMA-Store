@@ -27,8 +27,8 @@
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
   animation: fadeUp .38s ease both;
 }
-.notification-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgb(99 91 255 / 18%); }
-.notification-item.unread { background: linear-gradient(135deg, rgb(99 91 255 / 7%), rgb(255 255 255 / 94%)); }
+.notification-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgb(86 102 79 / 18%); }
+.notification-item.unread { background: linear-gradient(135deg, rgb(86 102 79 / 7%), rgb(255 255 255 / 94%)); }
 .notification-item > i { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: var(--primary-soft); color: var(--primary); font-size: 18px; }
 .content { min-width: 0; }
 .message { margin: 0 0 5px; color: var(--text); font-weight: 750; line-height: 1.55; }
@@ -38,10 +38,10 @@
 .delete-notification { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; color: var(--muted); }
 .delete-notification:hover { color: var(--danger); border-color: rgb(217 54 79 / 20%); background: var(--danger-soft); transform: scale(1.04); }
 .mark-all-btn { min-height: 40px; padding: 9px 14px; border-radius: 11px; font-weight: 800; }
-.mark-all-btn:hover { border-color: rgb(99 91 255 / 20%); background: var(--primary-soft); }
+.mark-all-btn:hover { border-color: rgb(86 102 79 / 20%); background: var(--primary-soft); }
 .pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 26px; }
 .pagination button { min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); color: var(--text); cursor: pointer; font-weight: 800; }
-.pagination button:hover:not(:disabled) { background: var(--primary-soft); border-color: rgb(99 91 255 / 20%); }
+.pagination button:hover:not(:disabled) { background: var(--primary-soft); border-color: rgb(86 102 79 / 20%); }
 .pagination button:disabled { opacity: .45; cursor: default; }
 .pagination span { color: var(--muted); font-size: .82rem; font-weight: 700; }
 @media (max-width: 620px) {

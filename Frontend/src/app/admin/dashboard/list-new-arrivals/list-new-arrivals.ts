@@ -11,4 +11,9 @@ import { IProduct } from '../../../core/models/product.model';
 export class ListNewArrivals {
   @Input() products: IProduct[] = [];
   @Input() staticURL = "";
+
+  image(images: string[] | undefined): string {
+    if (!images?.length) return "";
+    return /^https?:\/\//i.test(images[0]) ? images[0] : `${this.staticURL}${images[0]}`;
+  }
 }

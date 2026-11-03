@@ -1,84 +1,117 @@
-<section class="hero">
-  <div class="hero-content">
-    <h1>Discover Fashion That Fits Every Season</h1>
-    <p>Curated clothing collections for the whole family — quality you can trust.</p>
-    <a routerLink="/products" class="hero-btn">Shop Now</a>
+<section class="editorial-hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><span></span> THE NEW SEASON / 2026</span>
+    <h1>Less, but<br /><em>better.</em></h1>
+    <p>A considered wardrobe for the way you live now. Discover thoughtful essentials, elevated details, and pieces worth keeping.</p>
+    <div class="hero-actions">
+      <a routerLink="/products/list" class="dark-cta">Explore the collection <i class="bi bi-arrow-up-right"></i></a>
+      <a routerLink="/products/list" class="text-cta">Meet your new favourites <span>→</span></a>
+    </div>
+    <div class="hero-proof"><div class="proof-stars">★★★★★</div><span>Made for everyday, chosen by you.</span></div>
   </div>
+  <div class="hero-image-wrap">
+    <img class="hero-image" src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1500&q=90" alt="Contemporary fashion editorial from the LOOMA collection" fetchpriority="high" />
+    <div class="hero-side-note"><span>01 / 03</span><span>THE ART OF EVERYDAY</span></div>
+    <div class="hero-stamp"><span>LOOMA</span><small>Wear what<br />moves you.</small></div>
+  </div>
+  <div class="hero-index">A MORE CONSIDERED WAY TO DRESS <span>SCROLL TO EXPLORE ↓</span></div>
 </section>
 
-<section class="section">
-  <div class="section-header">
-    <h2>New Arrivals</h2>
-    <a routerLink="/products">View all</a>
+<section class="category-section">
+  <div class="section-topline"><span>01 — FIND YOUR FORM</span><a routerLink="/products/list">VIEW ALL PIECES <i class="bi bi-arrow-up-right"></i></a></div>
+  <div class="section-intro">
+    <div><span class="eyebrow">THE LOOMA COLLECTION</span><h2>Something for<br /><em>every version of you.</em></h2></div>
+    <p>Personal style isn't one-size-fits-all. Explore a collection made to move with you, whatever the day looks like.</p>
   </div>
-
-  <div class="product-grid">
-    @for (product of newArrivals; track product._id) {
-      <a [routerLink]="['/products', product.slug]" class="product-card">
-        <div class="product-image">
-          @if (image(product.images)) {
-            <img [src]="image(product.images)" [alt]="product.name" />
-          }
-        </div>
-        <h3>{{ product.name }}</h3>
-        <p class="price">{{ product.price | number }} EGP</p>
+  <div class="category-grid">
+    @for (category of categories; track category.name; let i = $index) {
+      <a routerLink="/products/list" [queryParams]="{ category: category.name }" class="category-card" [class.category-tall]="i === 1">
+        <img [src]="category.image" [alt]="category.name + ' collection'" loading="lazy" />
+        <span class="category-number">0{{ i + 1 }}</span>
+        <span class="category-meta"><span><strong>{{ category.name }}</strong><small>{{ category.note }}</small></span><i class="bi bi-arrow-up-right"></i></span>
       </a>
-    } @empty {
-      <p class="empty">No new arrivals yet.</p>
     }
   </div>
 </section>
 
-<section class="section alt">
-  <div class="section-header">
-    <h2>Best Sellers</h2>
-  </div>
+<section class="product-section new-section">
+  <div class="section-topline"><span>02 — JUST LANDED</span><a routerLink="/products/list">SHOP ALL NEW <i class="bi bi-arrow-up-right"></i></a></div>
+  <div class="product-heading"><div><span class="eyebrow">FRESH PERSPECTIVE</span><h2>New to the <em>edit.</em></h2></div><p>Fresh finds, timeless energy. These are the pieces we're reaching for right now.</p></div>
+
+  @if (feedback) {
+    <div class="store-feedback" [class.feedback-error]="feedbackKind === 'error'" role="status"><i class="bi" [class.bi-check-circle]="feedbackKind === 'success'" [class.bi-exclamation-circle]="feedbackKind === 'error'"></i>{{ feedback }}</div>
+  }
 
   <div class="product-grid">
-    @for (product of bestSellers; track product._id) {
-      <a [routerLink]="['/products', product.slug]" class="product-card">
-        <div class="product-image">
-          @if (image(product.images)) {
-            <img [src]="image(product.images)" [alt]="product.name" />
-          }
+    @for (product of newArrivals.slice(0, 4); track product._id; let i = $index) {
+      <article class="product-card">
+        <div class="product-visual">
+          <a [routerLink]="['/products', product.slug]" class="product-image-link">
+            @if (image(product.images)) { <img [src]="image(product.images)" [alt]="product.name" loading="lazy" /> }
+          </a>
+          <span class="product-tag">{{ i === 0 ? 'NEW ARRIVAL' : 'THE LATEST' }}</span>
+          <button type="button" class="save-button" [class.is-saved]="isSaved(product)" (click)="toggleSaved($event, product)" [attr.aria-label]="isSaved(product) ? 'Remove from saved pieces' : 'Save this piece'">
+            <i class="bi" [class.bi-heart]="!isSaved(product)" [class.bi-heart-fill]="isSaved(product)"></i>
+          </button>
+          <button type="button" class="quick-add" (click)="addToCart($event, product)" [disabled]="!product.isActive || product.isDeleted || product.stockQuantity < 1">
+            <span>{{ product.stockQuantity > 0 ? 'ADD TO BAG' : 'SOLD OUT' }}</span><i class="bi bi-arrow-up-right"></i>
+          </button>
         </div>
-        <h3>{{ product.name }}</h3>
-        <p class="price">{{ product.price | number }} EGP</p>
-        <p class="sold">Selected by our store team</p>
-      </a>
+        <div class="product-info"><a [routerLink]="['/products', product.slug]">{{ product.name }}</a><strong>{{ product.price | number }} <small>EGP</small></strong></div>
+      </article>
     } @empty {
-      <p class="empty">No best sellers selected yet.</p>
+      @if (isLoading) {
+        <div class="product-loading" aria-label="Loading new arrivals"><span></span><span></span><span></span><span></span></div>
+      } @else {
+        <p class="empty-products">Our next drop is being prepared. Check back soon.</p>
+      }
     }
+  </div>
+</section>
+
+<section class="brand-story">
+  <div class="story-image"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=88" alt="Carefully curated neutral wardrobe essentials" loading="lazy" /><span>THE LOOMA POINT OF VIEW</span></div>
+  <div class="story-copy"><span class="eyebrow">03 — A DIFFERENT KIND OF WARDROBE</span><h2>Good style is<br /><em>never in a rush.</em></h2><p>We believe the best pieces earn their place. That's why LOOMA brings together versatile shapes, considered details, and everyday comfort — so getting dressed feels like the easiest part of your day.</p><a routerLink="/products/list" class="story-link">Find your forever pieces <i class="bi bi-arrow-up-right"></i></a><div class="story-signature">LOOMA <span>—</span> WEAR YOUR STORY</div></div>
+</section>
+
+<section class="product-section best-section">
+  <div class="section-topline"><span>04 — THE COMMUNITY'S EDIT</span><a routerLink="/products/list">DISCOVER EVERYTHING <i class="bi bi-arrow-up-right"></i></a></div>
+  <div class="product-heading"><div><span class="eyebrow">LOVED FOR A REASON</span><h2>Good things get <em>noticed.</em></h2></div><p>The pieces finding their way into wardrobes, and staying there.</p></div>
+  <div class="product-grid compact-grid">
+    @for (product of bestSellers.slice(0, 4); track product._id; let i = $index) {
+      <article class="product-card">
+        <div class="product-visual">
+          <a [routerLink]="['/products', product.slug]" class="product-image-link">@if (image(product.images)) { <img [src]="image(product.images)" [alt]="product.name" loading="lazy" /> }</a>
+          <span class="product-tag">COMMUNITY FAVOURITE</span>
+          <button type="button" class="save-button" [class.is-saved]="isSaved(product)" (click)="toggleSaved($event, product)" [attr.aria-label]="isSaved(product) ? 'Remove from saved pieces' : 'Save this piece'"><i class="bi" [class.bi-heart]="!isSaved(product)" [class.bi-heart-fill]="isSaved(product)"></i></button>
+          <button type="button" class="quick-add" (click)="addToCart($event, product)" [disabled]="!product.isActive || product.isDeleted || product.stockQuantity < 1"><span>{{ product.stockQuantity > 0 ? 'ADD TO BAG' : 'SOLD OUT' }}</span><i class="bi bi-arrow-up-right"></i></button>
+        </div>
+        <div class="product-info"><a [routerLink]="['/products', product.slug]">{{ product.name }}</a><strong>{{ product.price | number }} <small>EGP</small></strong></div>
+      </article>
+    } @empty { <p class="empty-products">Our community favourites will appear here soon.</p> }
+  </div>
+</section>
+
+<section class="looma-promises">
+  <div class="promise-heading"><span class="eyebrow">THE LOOMA STANDARD</span><h2>Little details.<br /><em>Big difference.</em></h2></div>
+  <div class="promise-grid">
+    <div class="promise-item"><span>01</span><i class="bi bi-box-seam"></i><h3>Thoughtful delivery</h3><p>Carefully packed and delivered to your door across Egypt.</p></div>
+    <div class="promise-item"><span>02</span><i class="bi bi-arrow-repeat"></i><h3>Easy returns</h3><p>A straightforward return experience, without the fuss.</p></div>
+    <div class="promise-item"><span>03</span><i class="bi bi-shield-check"></i><h3>Quality first</h3><p>Every piece is selected with comfort, feel, and longevity in mind.</p></div>
+    <div class="promise-item"><span>04</span><i class="bi bi-chat-heart"></i><h3>Here for you</h3><p>Real support when you need a hand choosing the right piece.</p></div>
   </div>
 </section>
 
 @if (testimonials.length > 0) {
-  <section class="section">
-    <div class="section-header">
-      <h2>What Our Customers Say</h2>
-    </div>
-
+  <section class="testimonial-section">
+    <div class="section-topline"><span>05 — NOTES FROM YOU</span><a routerLink="/contact">SAY HELLO <i class="bi bi-arrow-up-right"></i></a></div>
+    <div class="testimonial-heading"><span class="eyebrow">KIND WORDS, REAL PEOPLE</span><h2>Don't just take<br /><em>our word for it.</em></h2></div>
     <div class="testimonial-grid">
-      @for (t of testimonials; track t._id) {
-        <div class="testimonial-card">
-          <div class="stars">
-            @for (s of stars(t.rating); track $index) {
-              <i class="bi bi-star-fill"></i>
-            }
-          </div>
-          <p class="message">"{{ t.message }}"</p>
-
-          <div class="testimonial-user">
-            <div class="user-avatar">
-              {{ testimonialInitial(t) }}
-            </div>
-            <div>
-              <h3>{{ testimonialName(t) }}</h3>
-              <span>Verified Customer</span>
-            </div>
-          </div>
-        </div>
+      @for (t of testimonials.slice(0, 3); track t._id) {
+        <article class="testimonial-card"><div class="review-stars">@for (s of stars(t.rating); track $index) { <i class="bi bi-star-fill"></i> }</div><p class="review-message">“{{ t.message }}”</p><div class="review-user"><span class="review-avatar">{{ testimonialInitial(t) }}</span><span><strong>{{ testimonialName(t) }}</strong><small>LOOMA customer</small></span><i class="bi bi-patch-check-fill"></i></div></article>
       }
     </div>
   </section>
 }
+
+<section class="closing-banner"><div><span class="eyebrow">YOUR NEXT FAVOURITE IS HERE</span><h2>Make room for<br /><em>something good.</em></h2></div><a routerLink="/products/list" class="closing-cta">Explore LOOMA <i class="bi bi-arrow-up-right"></i></a></section>

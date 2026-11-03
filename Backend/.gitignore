@@ -1,15 +1,9 @@
 node_modules/
 .env
 logs/
-uploads/
+uploads/*
+!uploads/.gitkeep
 backups/
 
 .DS_Store
 Thumbs.db
-.vscode/
-.idea/
-coverage/
-tmp/
-temp/
-.cache/
-dist/

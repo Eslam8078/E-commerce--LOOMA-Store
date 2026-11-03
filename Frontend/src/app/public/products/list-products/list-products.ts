@@ -1,12 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductService } from '../../../core/services/product.service';
 import { CategoryService } from '../../../core/services/category.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { CartService } from '../../../core/services/cart.service';
+import { WishlistService } from '../../../core/services/wishlist.service';
 
 import { IProduct } from '../../../core/models/product.model';
 import { ICategory } from '../../../core/models/category.model';
@@ -26,6 +27,8 @@ export class ListProducts implements OnInit {
   products: IProduct[] = [];
   categories: ICategory[] = [];
   search = '';
+  requestedCategory = '';
+  categoriesLoaded = false;
   categoryId = '';
   subCategoryId = '';
   season = '';
@@ -44,25 +47,46 @@ export class ListProducts implements OnInit {
     private cartService: CartService,
     private subcategoryService: SubCategoryService,
     private router: Router,
+    private route: ActivatedRoute,
+    private wishlistService: WishlistService,
     private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
     this.loadCategories();
-    this.load();
+    this.route.queryParamMap.subscribe((params) => {
+      this.search = params.get('search') || '';
+      this.requestedCategory = params.get('category') || '';
+      this.page = 1;
+      this.applyRouteFilters();
+    });
   }
 
   loadCategories(): void {
     this.categoryService.getCategories({ limit: 50 }).subscribe({
       next: (response) => {
         this.categories = response.data || [];
+        this.categoriesLoaded = true;
+        this.applyRouteFilters();
         this.cdr.detectChanges();
       },
       error: () => {
         this.categories = [];
+        this.categoriesLoaded = true;
+        this.applyRouteFilters();
         this.cdr.detectChanges();
       },
     });
+  }
+
+  private applyRouteFilters(): void {
+    if (!this.categoriesLoaded) return;
+    this.categoryId = this.requestedCategory
+      ? this.categories.find((category) => category.name.toLowerCase() === this.requestedCategory.toLowerCase())?._id || ''
+      : '';
+    this.subCategoryId = '';
+    this.subcategories = [];
+    this.load();
   }
 
   load(): void {
@@ -128,8 +152,19 @@ export class ListProducts implements OnInit {
     this.load();
   }
 
+  isSaved(product: IProduct): boolean {
+    return this.wishlistService.contains(product._id);
+  }
+
+  toggleSaved(event: Event, product: IProduct): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.wishlistService.toggle(product);
+    this.cdr.detectChanges();
+  }
+
   image(images: string[]): string {
-    return images?.length ? `${this.staticURL}${images[0]}` : '';
+    return images?.length ? (/^https?:\/\//i.test(images[0]) ? images[0] : `${this.staticURL}${images[0]}`) : '';
   }
 
   viewProduct(product: IProduct): void {

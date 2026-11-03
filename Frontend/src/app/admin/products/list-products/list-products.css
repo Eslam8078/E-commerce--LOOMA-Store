@@ -153,4 +153,4 @@
 .btn-sm,.status-select{transition:transform .2s ease,box-shadow .2s ease}
 .btn-sm:not(:disabled):hover{transform:translateY(-2px)}
 
-.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700}.checkbox-row input{width:18px;height:18px;accent-color:#6366f1}.muted{opacity:.45}
+.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700}.checkbox-row input{width:18px;height:18px;accent-color:#56664f}.muted{opacity:.45}

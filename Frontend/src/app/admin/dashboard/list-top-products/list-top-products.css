@@ -41,7 +41,7 @@
     transform 0.2s ease;
 }
 .table tbody tr:hover {
-  background: #fafaff;
+  background: #f7f6f0;
   transform: translateX(2px);
 }
 @keyframes panelIn {

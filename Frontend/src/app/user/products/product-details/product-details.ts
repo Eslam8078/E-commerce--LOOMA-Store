@@ -72,7 +72,7 @@ export class ProductDetails implements OnInit {
   }
 
   image(file: string | undefined): string {
-    return file ? `${this.staticURL}${file}` : '';
+    return file ? (/^https?:\/\//i.test(file) ? file : `${this.staticURL}${file}`) : '';
   }
 
   categoryName(): string {

@@ -1,6 +1,6 @@
 {
-  "name": "front",
-  "version": "0.0.0",
+  "name": "looma-storefront",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -30,5 +30,8 @@
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
+  },
+  "engines": {
+    "node": "^22.22.3 || >=24.15.0"
   }
 }

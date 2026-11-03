@@ -76,6 +76,10 @@ export class UpdateProduct implements OnInit {
     this.loadProduct();
   }
 
+  imageSource(image: string): string {
+    return /^https?:\/\//i.test(image) ? image : `${this.staticURL}${image}`;
+  }
+
   get name() {
     return this.productForm.get('name');
   }

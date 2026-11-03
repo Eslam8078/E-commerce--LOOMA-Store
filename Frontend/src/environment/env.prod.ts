@@ -1,5 +1,6 @@
 export const environment = {
-  apiURL: 'http://mydomain.com/api',
+  apiURL: 'https://your-api-domain.com/api',
   production: true,
-  staticURL: 'http://mydomain.com/uploads/',
+  staticURL: 'https://your-api-domain.com/uploads/',
+  supportEmail: 'support@your-domain.com',
 };

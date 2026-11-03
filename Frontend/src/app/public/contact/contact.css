@@ -20,7 +20,7 @@
   align-items: center;
   min-height: 28px;
   padding: 5px 11px;
-  border: 1px solid rgb(99 91 255 / 14%);
+  border: 1px solid rgb(86 102 79 / 14%);
   border-radius: 999px;
   background: var(--primary-soft);
   color: var(--primary-dark);
@@ -73,7 +73,7 @@
 .info-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: rgb(99 91 255 / 18%);
+  border-color: rgb(86 102 79 / 18%);
 }
 
 .info-link {
@@ -187,12 +187,12 @@
   color: #fff;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 16px 32px rgb(99 91 255 / 22%);
+  box-shadow: 0 16px 32px rgb(86 102 79 / 22%);
 }
 
 .contact-form button:hover:not(:disabled) {
   transform: translateY(-3px);
-  box-shadow: 0 20px 38px rgb(99 91 255 / 28%);
+  box-shadow: 0 20px 38px rgb(86 102 79 / 28%);
 }
 
 .contact-form button:disabled {
@@ -239,7 +239,7 @@
   height: 360px;
   top: 40px;
   left: -220px;
-  background: rgb(99 91 255 / 7%);
+  background: rgb(86 102 79 / 7%);
 }
 .contact-page::after {
   width: 300px;

@@ -51,7 +51,7 @@
 .refresh-btn:hover {
   transform: translateY(-2px);
   color: var(--primary-dark);
-  border-color: rgb(99 91 255 / 24%);
+  border-color: rgb(86 102 79 / 24%);
   background: var(--primary-soft);
 }
 .notification-list {
@@ -104,9 +104,9 @@
   transform: scaleY(1);
 }
 .notification-item.unread {
-  background: linear-gradient(135deg, rgb(99 91 255 / 10%), rgb(255 255 255 / 97%));
-  border-color: rgb(99 91 255 / 23%);
-  box-shadow: 0 12px 26px rgb(99 91 255 / 8%);
+  background: linear-gradient(135deg, rgb(86 102 79 / 10%), rgb(255 255 255 / 97%));
+  border-color: rgb(86 102 79 / 23%);
+  box-shadow: 0 12px 26px rgb(86 102 79 / 8%);
 }
 .notification-item.read {
   background: var(--surface-soft);
@@ -130,7 +130,7 @@
 }
 .notification-item:hover .notification-icon {
   transform: rotate(-6deg) scale(1.05);
-  background: rgb(99 91 255 / 15%);
+  background: rgb(86 102 79 / 15%);
 }
 .notification-copy {
   min-width: 0;
@@ -170,7 +170,7 @@
   letter-spacing: 0.05em;
 }
 .notification-status.unread-status {
-  background: rgb(99 91 255 / 12%);
+  background: rgb(86 102 79 / 12%);
   color: var(--primary);
 }
 .notification-item time {

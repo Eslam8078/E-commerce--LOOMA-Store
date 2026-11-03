@@ -4,7 +4,7 @@
 .page-header p { margin:6px 0 0; color:var(--muted); }
 .header-actions { display:flex; align-items:center; gap:10px; }
 .checkbox-filter { display:inline-flex; align-items:center; gap:7px; padding:9px 11px; border:1px solid var(--line); border-radius:11px; background:var(--surface); color:var(--muted); font-size:.8rem; font-weight:800; }
-.add-btn { padding:10px 15px; border:0; border-radius:11px; color:#fff; background:linear-gradient(135deg,var(--primary),#8379ff); font-weight:850; cursor:pointer; box-shadow:0 10px 22px rgb(99 91 255 / 18%); }
+.add-btn { padding:10px 15px; border:0; border-radius:11px; color:#fff; background:linear-gradient(135deg,var(--primary),#89977f); font-weight:850; cursor:pointer; box-shadow:0 10px 22px rgb(86 102 79 / 18%); }
 .faq-form { display:grid; gap:14px; margin-bottom:20px; padding:20px; border:1px solid var(--line); border-radius:var(--radius-lg); background:rgb(255 255 255 / 88%); box-shadow:var(--shadow-sm); }
 .faq-form .form-row { display:grid; gap:7px; }
 .faq-form label { color:#3b4354; font-size:.78rem; font-weight:850; }

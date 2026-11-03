@@ -7,7 +7,7 @@
 .backup-empty p { color: var(--muted); }
 .backup-list { display: grid; gap: 12px; }
 .backup-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 15px; padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface-soft); }
-.backup-row:hover { border-color: rgb(99 91 255 / 22%); box-shadow: var(--shadow-xs); }
+.backup-row:hover { border-color: rgb(86 102 79 / 22%); box-shadow: var(--shadow-xs); }
 .backup-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 13px; background: var(--primary-soft); color: var(--primary); font-size: 1.2rem; }
 .backup-info { min-width: 0; display: grid; gap: 4px; }
 .backup-info strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

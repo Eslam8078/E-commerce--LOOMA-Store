@@ -217,7 +217,7 @@ exports.getBestSellers = catchAsync(async (req, res) => {
   })
     .sort({ updatedAt: -1, createdAt: -1 })
     .limit(safeLimit)
-    .select("name slug price images stockQuantity")
+    .select("name slug price images stockQuantity isActive isDeleted")
     .lean();
 
   res.status(200).json({ message: "Best seller products", data: result });

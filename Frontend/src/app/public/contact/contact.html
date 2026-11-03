@@ -13,10 +13,10 @@
           <div><span class="info-label">Support</span><h3>Customer Care</h3><p>Friendly help for orders, products, and delivery questions.</p></div>
         </div>
 
-        <a class="info-card info-link" href="mailto:eslamaymn2412@gmail.com">
+        <div class="info-card">
           <div class="info-icon"><i class="bi bi-envelope"></i></div>
-          <div><span class="info-label">Email</span><h3>eslamaymn2412@gmail.com</h3><p>Send us your question directly by email.</p></div>
-        </a>
+          <div><span class="info-label">Contact</span><h3>Customer Care</h3><p>Use the message form and we'll help you find the right answer.</p></div>
+        </div>
 
         <div class="info-card">
           <div class="info-icon"><i class="bi bi-clock"></i></div>
@@ -33,7 +33,7 @@
         <div class="form-heading">
           <span class="eyebrow">Message us</span>
           <h2>Send a message</h2>
-          <p>Your message will be addressed to eslamaymn2412@gmail.com in your email app.</p>
+          <p>Tell us what you need and we’ll help you with the next step.</p>
         </div>
 
         <form class="contact-form" (ngSubmit)="submit()">
@@ -48,8 +48,8 @@
             Send Message <i class="bi bi-arrow-up-right"></i>
           </button>
 
-          @if (sent) {
-            <p class="sent"><i class="bi bi-check-circle"></i> Your email app has been opened.</p>
+          @if (feedback) {
+            <p class="sent" [class.error]="!sent"><i class="bi" [class.bi-check-circle]="sent" [class.bi-info-circle]="!sent"></i> {{ feedback }}</p>
           }
         </form>
       </div>

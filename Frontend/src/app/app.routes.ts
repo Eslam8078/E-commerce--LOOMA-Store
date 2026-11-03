@@ -63,6 +63,7 @@ import { PublicProductDetails } from './public/products/product-details/product-
 import { GuestCartComponent } from './public/guest-cart/guest-cart';
 import { Contact } from './public/contact/contact';
 import { Legal } from './public/legal/legal';
+import { Wishlist } from './public/wishlist/wishlist';
 
 export const routes: Routes = [
   {
@@ -311,6 +312,10 @@ export const routes: Routes = [
       {
         path: '',
         component: HomePublic,
+      },
+      {
+        path: 'wishlist',
+        component: Wishlist,
       },
       {
         path: 'faq',

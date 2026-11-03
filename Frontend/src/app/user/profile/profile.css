@@ -114,14 +114,14 @@
   border-radius: 12px;
   color: #fff;
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  box-shadow: 0 10px 24px rgb(99 91 255 / 18%);
+  box-shadow: 0 10px 24px rgb(86 102 79 / 18%);
   font: inherit;
   font-weight: 900;
   cursor: pointer;
 }
 
 .form-card button[type='submit']:hover:not(:disabled) {
-  box-shadow: 0 14px 30px rgb(99 91 255 / 25%);
+  box-shadow: 0 14px 30px rgb(86 102 79 / 25%);
 }
 
 .form-card button[type='submit']:disabled {

@@ -33,7 +33,7 @@ export class GuestCartComponent implements OnInit {
   }
 
   image(item: GuestCartItem): string {
-    return item.image ? `${this.staticURL}${item.image}` : '';
+    return item.image ? (/^https?:\/\//i.test(item.image) ? item.image : `${this.staticURL}${item.image}`) : '';
   }
 
   updateQuantity(item: GuestCartItem, quantity: number): void {

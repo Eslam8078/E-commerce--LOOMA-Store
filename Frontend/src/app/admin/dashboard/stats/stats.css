@@ -44,7 +44,7 @@
   right: -62px;
   top: -74px;
   border-radius: 50%;
-  background: rgb(99 91 255 / 7%);
+  background: rgb(86 102 79 / 7%);
   animation: dashOrb 8s ease-in-out infinite;
 }
 @keyframes dashCardIn {

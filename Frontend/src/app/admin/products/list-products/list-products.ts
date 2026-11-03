@@ -177,7 +177,7 @@ export class ListProducts implements OnInit {
   }
 
   image(images: string[]): string {
-    return images && images.length ? `${this.staticURL}${images[0]}` : '';
+    return images && images.length ? (/^https?:\/\//i.test(images[0]) ? images[0] : `${this.staticURL}${images[0]}`) : '';
   }
 
   categoryName(categoryId: IProduct['categoryId']): string {

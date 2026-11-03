@@ -80,7 +80,7 @@
   color: #868e96;
 }
 
-.welcome{animation:userHomeReveal .6s var(--ease-out,cubic-bezier(.22,1,.36,1)) both}.section{animation:userHomeReveal .65s var(--ease-out,cubic-bezier(.22,1,.36,1)) both}.section:nth-of-type(2){animation-delay:.08s}.section:nth-of-type(3){animation-delay:.15s}.card{position:relative;background:var(--surface);box-shadow:var(--shadow-sm);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}.card::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 25%,rgb(255 255 255 / 22%) 50%,transparent 75%);transform:translateX(-120%);transition:transform .75s ease}.card:hover{transform:translateY(-7px);box-shadow:var(--shadow-md);border-color:rgb(99 91 255 / 20%)}.card:hover::after{transform:translateX(120%)}.image{overflow:hidden}.image img{transition:transform .55s var(--ease-out,cubic-bezier(.22,1,.36,1)),filter .35s ease}.card:hover .image img{transform:scale(1.05);filter:saturate(1.04)}@keyframes userHomeReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.welcome,.section{animation:none}.card,.image img{transition:none}.card::after{display:none}}
+.welcome{animation:userHomeReveal .6s var(--ease-out,cubic-bezier(.22,1,.36,1)) both}.section{animation:userHomeReveal .65s var(--ease-out,cubic-bezier(.22,1,.36,1)) both}.section:nth-of-type(2){animation-delay:.08s}.section:nth-of-type(3){animation-delay:.15s}.card{position:relative;background:var(--surface);box-shadow:var(--shadow-sm);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}.card::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 25%,rgb(255 255 255 / 22%) 50%,transparent 75%);transform:translateX(-120%);transition:transform .75s ease}.card:hover{transform:translateY(-7px);box-shadow:var(--shadow-md);border-color:rgb(86 102 79 / 20%)}.card:hover::after{transform:translateX(120%)}.image{overflow:hidden}.image img{transition:transform .55s var(--ease-out,cubic-bezier(.22,1,.36,1)),filter .35s ease}.card:hover .image img{transform:scale(1.05);filter:saturate(1.04)}@keyframes userHomeReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.welcome,.section{animation:none}.card,.image img{transition:none}.card::after{display:none}}
 
 .welcome {
   position: relative;
@@ -105,7 +105,7 @@
   height: 180px;
   top: -90px;
   right: -60px;
-  background: radial-gradient(circle, rgb(99 91 255 / 18%), transparent 68%);
+  background: radial-gradient(circle, rgb(86 102 79 / 18%), transparent 68%);
   animation: userWelcomeOrb 7s ease-in-out infinite;
 }
 

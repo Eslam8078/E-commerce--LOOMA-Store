@@ -11,7 +11,7 @@
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 .card { position: relative; overflow: hidden; padding: 21px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgb(255 255 255 / 91%); box-shadow: var(--shadow-sm); animation: fadeUp .45s ease both; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
 .card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
-.card:hover { transform: translateY(-5px); border-color: rgb(99 91 255 / 18%); box-shadow: var(--shadow-md); }
+.card:hover { transform: translateY(-5px); border-color: rgb(86 102 79 / 18%); box-shadow: var(--shadow-md); }
 .card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
 .stars { margin-bottom: 11px; color: #f3a51d; letter-spacing: 2px; }
 .message { min-height: 82px; margin: 0; color: #4d5363; line-height: 1.75; }

@@ -1,0 +1,16 @@
+{
+  "name": "looma-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LOOMA — full-stack fashion e-commerce platform",
+  "engines": {
+    "node": "^22.22.3 || >=24.15.0"
+  },
+  "scripts": {
+    "dev:backend": "npm --prefix Backend run dev",
+    "dev:frontend": "npm --prefix Frontend start",
+    "build:frontend": "npm --prefix Frontend run build",
+    "seed": "npm --prefix Backend run seed",
+    "seed:reset": "npm --prefix Backend run seed:reset"
+  }
+}

@@ -63,7 +63,7 @@ export class Home implements OnInit {
 
   image(images: string[] | undefined): string {
     return images && images.length
-      ? `${this.staticURL}${images[0]}`
+      ? (/^https?:\/\//i.test(images[0]) ? images[0] : `${this.staticURL}${images[0]}`)
       : '';
   }
 }

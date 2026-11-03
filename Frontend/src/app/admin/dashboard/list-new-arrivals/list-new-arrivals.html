@@ -7,7 +7,7 @@
       @for (p of products; track p._id) {
         <div class="arrival-card">
           @if (p.images?.length) {
-            <img [src]="staticURL + p.images[0]" [alt]="p.name" />
+            <img [src]="image(p.images)" [alt]="p.name" />
           }
           <p class="name">{{ p.name }}</p>
           <p class="sub">{{ p.price | number }} EGP</p>

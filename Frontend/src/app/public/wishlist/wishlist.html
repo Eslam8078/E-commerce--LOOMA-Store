@@ -1,0 +1,43 @@
+<section class="wishlist-page page">
+  <div class="wishlist-heading">
+    <div>
+      <span class="eyebrow">YOUR PERSONAL EDIT</span>
+      <h1>Saved with intention.</h1>
+      <p>Pieces you love, all in one place. Come back when you're ready.</p>
+    </div>
+    <span class="saved-count">{{ products.length }} saved {{ products.length === 1 ? 'piece' : 'pieces' }}</span>
+  </div>
+
+  @if (products.length) {
+    <div class="wishlist-grid">
+      @for (product of products; track product._id) {
+        <article class="saved-card">
+          <a [routerLink]="['/products', product.slug]" class="saved-image">
+            @if (image(product.images)) {
+              <img [src]="image(product.images)" [alt]="product.name" />
+            }
+            <span class="saved-label">SAVED FOR LATER</span>
+          </a>
+          <div class="saved-details">
+            <div>
+              <h2>{{ product.name }}</h2>
+              <p>{{ product.price | number }} EGP</p>
+            </div>
+            <button type="button" (click)="remove(product)" aria-label="Remove from wishlist" title="Remove from wishlist">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+          <a class="view-piece" [routerLink]="['/products', product.slug]">View piece <span>↗</span></a>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="wishlist-empty">
+      <div class="empty-mark"><i class="bi bi-bookmark-heart"></i></div>
+      <span class="eyebrow">A LITTLE SPACE FOR YOUR FAVOURITES</span>
+      <h2>Your edit is waiting.</h2>
+      <p>Tap the heart on any piece to keep it close. Your saved items stay on this device.</p>
+      <a routerLink="/products/list" class="dark-btn">Explore the collection <span>↗</span></a>
+    </div>
+  }
+</section>

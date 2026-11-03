@@ -46,7 +46,7 @@
   display: grid;
   place-items: center;
   border-radius: 22px;
-  background: linear-gradient(145deg, #eef1f8, #fafbfe);
+  background: linear-gradient(145deg, #eef1f8, #f8f7f1);
 }
 
 .main-image img {
@@ -192,10 +192,10 @@
   color: #fff;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 14px 30px rgb(99 91 255 / 20%);
+  box-shadow: 0 14px 30px rgb(86 102 79 / 20%);
 }
 
-.add-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 18px 34px rgb(99 91 255 / 28%); }
+.add-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 18px 34px rgb(86 102 79 / 28%); }
 .add-btn:disabled { opacity: .6; cursor: not-allowed; }
 
 .feedback {

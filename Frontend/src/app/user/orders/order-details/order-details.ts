@@ -75,7 +75,7 @@ export class OrderDetails implements OnInit {
   productImage(item: Order['items'][number]): string {
     const images = typeof item.productId === 'object' ? item.productId.images : [];
 
-    return images && images.length ? `${this.staticURL}${images[0]}` : '';
+    return images && images.length ? (/^https?:\/\//i.test(images[0]) ? images[0] : `${this.staticURL}${images[0]}`) : '';
   }
 
   get canCancel(): boolean {

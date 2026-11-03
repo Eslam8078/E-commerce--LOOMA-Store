@@ -46,14 +46,14 @@
   font-weight: 800;
   cursor: pointer;
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  box-shadow: 0 12px 24px rgb(99 91 255 / 18%);
+  box-shadow: 0 12px 24px rgb(86 102 79 / 18%);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 .date-filters button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgb(99 91 255 / 24%);
+  box-shadow: 0 16px 30px rgb(86 102 79 / 24%);
 }
 .alert {
   margin-bottom: 18px;

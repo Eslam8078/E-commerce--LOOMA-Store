@@ -1,4 +1,9 @@
 <section class="products-page">
+  <div class="catalog-intro">
+    <span class="catalog-eyebrow">THE LOOMA COLLECTION</span>
+    <h1>Find your <em>everyday.</em></h1>
+    <p>Considered pieces, familiar favourites, and a little something new.</p>
+  </div>
   <div class="filters">
     <input
       type="text"
@@ -50,6 +55,9 @@
               <img [src]="image(product.images)" [alt]="product.name" />
             }
           </div>
+          <button type="button" class="save-product" [class.is-saved]="isSaved(product)" (click)="toggleSaved($event, product)" [attr.aria-label]="isSaved(product) ? 'Remove from saved pieces' : 'Save this piece'">
+            <i class="bi" [class.bi-heart]="!isSaved(product)" [class.bi-heart-fill]="isSaved(product)"></i>
+          </button>
 
           <h3>{{ product.name }}</h3>
           <p class="price">{{ product.price | number }} EGP</p>

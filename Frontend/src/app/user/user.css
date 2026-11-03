@@ -26,7 +26,7 @@
   top: 110px;
   right: -170px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(99 91 255 / 9%), transparent 68%);
+  background: radial-gradient(circle, rgb(86 102 79 / 9%), transparent 68%);
   pointer-events: none;
   z-index: -1;
   animation: userGlow 8s ease-in-out infinite;

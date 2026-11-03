@@ -1,538 +1,152 @@
-# Eslam Store
+# LOOMA — The Everyday Edit
 
-A full-stack clothing e-commerce application built with **MEAN Stack technologies**:
+A full-stack fashion e-commerce platform built around a warm, editorial shopping experience. LOOMA includes a public storefront, customer account area, and a protected administration studio.
 
-- **Frontend:** Angular 22, TypeScript, RxJS, Bootstrap 5, Bootstrap Icons
-- **Backend:** Node.js, Express 5
-- **Database:** MongoDB with Mongoose
-- **Authentication:** JWT + bcrypt
-- **Uploads:** Multer
-- **Logging:** Winston
-- **Backup & Restore:** `mongodump` / `mongorestore`
+![LOOMA fashion campaign photography](https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85)
 
-The project contains a public shopping experience, customer account area, and protected admin dashboard.
+## Highlights
 
-## Main Features
+### Shopping experience
+- Responsive editorial storefront with curated collections, new arrivals, best sellers, customer notes, and service highlights.
+- Product catalogue with keyword search, category/subcategory filters, and season filters.
+- Quick add-to-bag from the homepage and product listing.
+- Persistent wishlist saved in the current browser, with a header counter and dedicated saved-items page.
+- Guest shopping bag stored locally and merged into the customer cart after sign-in.
+- Product details, stock validation, and price-change detection before checkout.
+- Customer accounts, profile and address management, order history, cancellation/refund flows, notifications, and testimonials.
+- Cash-on-delivery checkout and governorate-based delivery fees.
+- FAQ, contact, privacy, and terms pages.
 
-### Customer
-
-- Register and login with JWT authentication.
-- Customer profile management.
-- Address management with a default address.
-- Guest cart using local storage.
-- Customer cart synchronization/merge after login.
-- Product browsing, search, categories, subcategories, seasons, and product details.
-- Price-change detection inside the cart before checkout.
-- Stock validation before order creation.
-- Checkout with Cash on Delivery.
-- Delivery fee calculation by governorate.
-- Order history and order details.
-- Order cancellation and refund request flow.
-- Refund result notifications.
-- Testimonials after a delivered order.
-- FAQ, Contact Us, Privacy Policy, and Terms pages.
-- Customer notifications with clickable links to the related order/testimonial.
-- Logout returns the customer to the public Home page.
-
-### Admin
-
-- Protected admin dashboard.
+### Admin studio
+- Protected dashboard with sales summaries and operational notifications.
 - Product, category, and subcategory management.
-- Product activation/deactivation and soft delete/restore.
-- Seasonal bulk activation/deactivation.
-- Manual Best Sellers selection.
-- User management: view, block/unblock, soft delete/restore, and create another admin.
-- Order management and status updates.
-- Refund approval/rejection.
-- New-order and other business notifications.
-- Testimonial moderation.
-- FAQ management.
-- Sales and order reports.
-- Backup list, backup creation, and database restore.
-- Admin notifications can be read, opened, and deleted.
+- Product activation, soft deletion/restoration, best-seller and new-arrival merchandising flags.
+- Order and customer management.
+- Testimonials, FAQs, delivery-fee management, reports, and database backup/restore utilities.
 
-## Order Status
+### Technology
+| Layer | Stack |
+|---|---|
+| Frontend | Angular 22, TypeScript, RxJS, Bootstrap 5, Bootstrap Icons |
+| Backend | Node.js, Express 5 |
+| Database | MongoDB, Mongoose |
+| Authentication | JWT and bcrypt |
+| Uploads | Multer |
+| Logging | Winston |
 
-Orders use the following main statuses:
-
-- `pending`
-- `preparing`
-- `shipped`
-- `delivered`
-- `cancelled`
-- `rejected`
-- `refund`
-
-Refund processing is tracked separately with a `refundStatus` value such as `none`, `pending`, `approved`, or `rejected`.
-
-When a refund is approved, the related stock is restored and the refunded order value is excluded from dashboard revenue calculations according to the implemented reporting logic.
-
-## Notifications
-
-Notifications are stored in MongoDB and can be marked as read or deleted.
-
-Notifications may contain a related entity so the frontend can navigate directly to the relevant page, for example:
-
-- New order → related order
-- Order status changed → related order
-- Refund requested/approved/rejected → related order
-- New testimonial → related testimonial
-- Testimonial approved/declined → related testimonial
-
-## Best Sellers
-
-Best Sellers are selected by the Admin from the product management area. The public Home page displays products marked as Best Sellers by the admin rather than relying only on sales aggregation.
-
-## Project Structure
+## Repository layout
 
 ```text
-Eslam Store/
-├── back/
-│   ├── config/
-│   ├── controllers/
-│   ├── middlewares/
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   ├── utilities/
-│   ├── uploads/
-│   ├── app.js
-│   ├── server.js
-│   ├── seed.js
-│   ├── package.json
-│   └── .env.example
-│
-├── front/
-│   ├── src/app/
-│   │   ├── admin/
-│   │   ├── core/
-│   │   ├── layout/
-│   │   ├── public/
-│   │   ├── shared/
-│   │   └── user/
-│   ├── angular.json
-│   ├── package.json
-│   └── tsconfig.json
-│
+looma-store/
+├── Backend/             # Express API, MongoDB models, controllers, services, seed
+├── Frontend/            # Angular storefront and admin application
+├── docker-compose.yml   # Optional local MongoDB service
+├── package.json         # Root convenience scripts
 └── README.md
 ```
 
-## Backend Architecture
+## Requirements
 
-The backend follows a simple layered structure:
+- Node.js 22.22.3+ or 24.15.0+ (required by the locked Angular 22 toolchain)
+- npm 10+
+- MongoDB 7+ or Docker Desktop with Docker Compose
 
-```text
-Request
-  ↓
-Route
-  ↓
-Middleware
-  ↓
-Controller
-  ↓
-Mongoose Model / Service / Utility
-  ↓
-MongoDB
-  ↓
-JSON Response
-```
+## Run locally
 
-### Important Backend Areas
+### 1. Start MongoDB
 
-- `routes/` defines REST endpoints.
-- `controllers/` handles request logic and responses.
-- `models/` defines MongoDB schemas and validation.
-- `middlewares/` handles authentication, authorization, CORS, uploads, and errors.
-- `services/` contains specialized operations such as backups and birthday notifications.
-- `utilities/` contains shared helpers for pagination, errors, logging, async handling, and date ranges.
-
-## Frontend Architecture
-
-Angular is organized into public, customer, admin, shared, and core areas.
-
-```text
-public/
-  Home
-  Products
-  Product Details
-  FAQ
-  Contact
-  Legal
-  Guest Cart
-
-user/
-  Products
-  Cart
-  Checkout
-  Orders
-  Profile
-  Addresses
-  Testimonials
-  Notifications
-  FAQ
-
-admin/
-  Dashboard
-  Products
-  Categories
-  Subcategories
-  Orders
-  Users
-  Testimonials
-  Reports
-  FAQs
-  Notifications
-  Backups
-```
-
-The route guards protect authenticated and admin-only areas.
-
-## API Base URL
-
-The backend is mounted under:
-
-```text
-http://localhost:3000/api
-```
-
-### Authentication
-
-```http
-POST /api/auth/register
-POST /api/auth/login
-```
-
-### Users
-
-```http
-GET    /api/users/me
-PATCH  /api/users/me
-GET    /api/users/me/addresses
-POST   /api/users/me/addresses
-PATCH  /api/users/me/addresses/:addressId
-DELETE /api/users/me/addresses/:addressId
-```
-
-Admin user management is available under `/api/users` and `/api/users/admins`.
-
-### Products
-
-```http
-GET    /api/products
-GET    /api/products/:id
-GET    /api/products/slug/:slug
-GET    /api/products/admin
-POST   /api/products
-PATCH  /api/products/:id
-DELETE /api/products/:id
-PATCH  /api/products/:id/activate
-PATCH  /api/products/:id/deactivate
-PATCH  /api/products/:id/restore
-PATCH  /api/products/:id/best-seller
-PATCH  /api/products/admin/season/:season/activate
-PATCH  /api/products/admin/season/:season/deactivate
-```
-
-### Cart
-
-```http
-GET    /api/cart
-POST   /api/cart
-POST   /api/cart/merge
-PATCH  /api/cart/:productId
-PATCH  /api/cart/:productId/confirm-price
-DELETE /api/cart/:productId
-DELETE /api/cart/clear
-```
-
-### Orders
-
-```http
-GET    /api/orders/quote
-POST   /api/orders
-GET    /api/orders/my-orders
-GET    /api/orders/my-orders/:id
-PATCH  /api/orders/:id/cancel
-PATCH  /api/orders/:id/refund
-```
-
-Admin order management includes:
-
-```http
-GET   /api/orders
-GET   /api/orders/:id
-PATCH /api/orders/:id/status
-PATCH /api/orders/:id/refund/approve
-PATCH /api/orders/:id/refund/reject
-```
-
-### Testimonials
-
-```http
-GET    /api/testimonials/approved
-POST   /api/testimonials
-GET    /api/testimonials/my-testimonials
-DELETE /api/testimonials/my-testimonials/:id
-```
-
-Admin moderation is available under `/api/testimonials`.
-
-### Categories / Subcategories
-
-Public and admin CRUD/activation/soft-delete/restore endpoints are available under:
-
-```text
-/api/categories
-/api/subcategories
-```
-
-### FAQs
-
-```text
-/api/faqs
-/api/faqs/admin
-```
-
-### Notifications
-
-```http
-GET    /api/notifications
-GET    /api/notifications/:id
-PATCH  /api/notifications/:id/read
-PATCH  /api/notifications/read-all
-DELETE /api/notifications/:id
-```
-
-### Reports
-
-Public endpoints:
-
-```http
-GET /api/reports/top-sales
-GET /api/reports/best-sellers
-GET /api/reports/new-arrivals
-```
-
-Admin reporting endpoints:
-
-```http
-GET /api/reports/revenue
-GET /api/reports/top-products
-GET /api/reports/orders-by-status
-GET /api/reports/sales-by-date
-GET /api/reports/sales-by-governorate
-```
-
-### Backup / Restore
-
-Admin-only endpoints:
-
-```http
-GET  /api/backups
-POST /api/backups
-POST /api/backups/restore
-```
-
-## Authentication & Security
-
-- JWT authentication for logged-in users.
-- Role-based authorization for admin/customer access.
-- Password hashing with bcrypt.
-- Passwords are not returned by default from the User model.
-- Blocked and deleted users cannot authenticate normally.
-- Sensitive environment values are stored in `.env` rather than source code.
-- CORS is configured through environment variables.
-- Request body size limits are configured in Express.
-- Upload limits are handled with Multer.
-- Soft delete is used for recoverable business data.
-
-## MongoDB Transactions
-
-Order creation uses a MongoDB transaction for critical operations such as:
-
-```text
-Validate cart
-   ↓
-Validate prices
-   ↓
-Validate stock
-   ↓
-Create order
-   ↓
-Decrease stock
-   ↓
-Clear cart
-   ↓
-Commit
-```
-
-If a critical step fails, the transaction can roll back the related database changes.
-
-## Installation
-
-### 1. Requirements
-
-Install:
-
-- Node.js
-- npm
-- MongoDB
-- MongoDB Database Tools (`mongodump` / `mongorestore`) for backup and restore functionality
-
-### 2. Backend Setup
+Using Docker Compose:
 
 ```bash
-cd back
+docker compose up -d mongodb
+```
+
+Or use a local MongoDB installation and adjust `Backend/.env` accordingly.
+
+### 2. Configure the API
+
+```bash
+cd Backend
+cp .env.example .env
 npm install
 ```
 
-Create a `.env` file based on `.env.example`.
+Set a private `SECRET_KEY` before starting the server. Keep `.env` out of Git.
 
-Example:
-
-```env
-PORT=3000
-DB_URI=mongodb://localhost:27017/EZ-Store
-SECRET_KEY=your-secret-key
-JWT_EXPIRES_IN=1d
-ALLOWED_ORIGINS=http://localhost:4200
-DB_NAME=EZ-Store
-NODE_ENV=dev
-```
-
-Start the backend:
-
-```bash
-npm start
-```
-
-Development mode:
-
-```bash
-npm run dev
-```
-
-### 3. Seed Database
-
-To seed the database:
+### 3. Seed the demo catalogue
 
 ```bash
 npm run seed
 ```
 
-To reset and seed again:
+The seed creates sample categories, subcategories, 20 products, demo customers, FAQs, testimonials, and a local admin account. It also refreshes product image URLs and merchandising flags for existing demo products.
+
+**Local demo accounts**
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@looma.demo` | `Admin@123` |
+| Customer | `ahmed@example.com` | `Customer@123` |
+| Customer | `mona@example.com` | `Customer@123` |
+| Customer | `youssef@example.com` | `Customer@123` |
+
+These are development-only credentials. Change or remove them before deploying a public instance. Never use demo credentials in production.
+
+### 4. Start the backend
 
 ```bash
-npm run seed:reset
+cd Backend
+npm run dev
 ```
 
-### 4. Frontend Setup
+The API listens on `http://localhost:3000` by default.
+
+### 5. Configure and start Angular
+
+In a second terminal:
 
 ```bash
-cd front
+cd Frontend
 npm install
 npm start
 ```
 
-The Angular development server normally runs at:
+Open `http://localhost:4200`.
 
-```text
-http://localhost:4200
-```
+The default development environment targets `http://localhost:3000/api`. Update `Frontend/src/environment/env.prod.ts` with your deployed API URL and support email before building for production.
 
-## Environment Configuration
+## Useful scripts
 
-The backend `.env.example` currently expects:
-
-```env
-PORT=3000
-DB_URI=mongodb://localhost:27017/EZ-Store
-SECRET_KEY=your-secret-key
-JWT_EXPIRES_IN=1d
-ALLOWED_ORIGINS=http://localhost:4200,http://mydomain.com,http://dashboard.mydomain.com
-DB_NAME=EZ-Store
-NODE_ENV=dev
-```
-
-Do not commit real secrets or production credentials.
-
-## Useful npm Scripts
-
-### Backend
+Run these from the repository root:
 
 ```bash
-npm start
-npm run dev
-npm run seed
-npm run seed:reset
+npm run dev:backend       # Start API with nodemon
+npm run dev:frontend      # Start Angular dev server
+npm run build:frontend    # Production Angular build
+npm run seed              # Insert or refresh demo data
+npm run seed:reset        # Recreate demo catalogue and users
 ```
 
-### Frontend
+Or run each script from its corresponding `Backend` or `Frontend` directory.
 
-```bash
-npm start
-npm run build
-npm run watch
-npm test
-```
+## Product photography in demo data
 
-## UI / UX
+The demo seed uses stable Unsplash CDN image URLs so the catalogue is populated immediately without checking binary image files into Git. The site accepts both absolute image URLs and filenames served from `Backend/uploads/`. Internet access is required to load the remote sample photos. Replace the demo URLs with original or properly licensed product photography before a commercial launch, and review the [Unsplash licence](https://unsplash.com/license), image-specific terms, and attribution requirements for your use case.
 
-The frontend uses a responsive design with:
+## Production checklist
 
-- Responsive layouts for desktop, tablet, and mobile.
-- Modern cards, forms, tables, filters, and dashboard panels.
-- Hover states and transitions.
-- Page entrance animations and micro-interactions.
-- Consistent public, customer, and admin styling.
-- Professional Header and Footer.
-- Customer greeting after login.
-- Clickable notifications.
+- [ ] Set a strong, unique `SECRET_KEY` and production database credentials.
+- [ ] Restrict `ALLOWED_ORIGINS` to the deployed frontend origin(s).
+- [ ] Replace the API/static URLs in `Frontend/src/environment/env.prod.ts`.
+- [ ] Configure `supportEmail` in both environment files.
+- [ ] Replace sample accounts and passwords; do not expose admin demo credentials.
+- [ ] Replace demo product images and testimonials with approved business content.
+- [ ] Configure HTTPS, secure hosting, database backups, and production logging.
+- [ ] Review privacy, returns, delivery, and terms copy for the actual business.
 
-## Data Rules
+## Notes
 
-### Soft Delete
-
-Business records are generally not physically deleted. Instead, they use `isDeleted` and can often be restored by an admin.
-
-### Default Address
-
-Only one active address is treated as the customer's default address.
-
-### Product Visibility
-
-Public product visibility respects product, category, and subcategory status.
-
-### Testimonials
-
-Customers can submit testimonials after having a delivered order, and each customer is limited to the implemented maximum number of active testimonials.
-
-### Orders
-
-The backend recalculates important order values and validates stock instead of trusting frontend values.
-
-## Backup and Restore
-
-Backups are managed by the admin dashboard and use MongoDB Database Tools.
-
-Typical operations are equivalent to:
-
-```bash
-mongodump
-mongorestore
-```
-
-Restore operations should be treated as destructive because restoring a database can replace existing data depending on the selected backup and restore options.
-
-## Project Notes
-
-- Public Home is the main landing page.
-- `Eslam Store` in the header routes to the public Home page.
-- Customer login redirects to Home.
-- Customer logout redirects to Home.
-- Admin sections are protected by authentication and role guards.
-- Notification records can carry related entity IDs so the UI can open the correct resource.
-
-## License
-
-This project currently uses the backend package's default `ISC` license setting.
+- The wishlist is intentionally browser-local and is not synchronised between devices or accounts.
+- Guest cart contents are stored in local storage until a customer signs in and merges them with the server cart.
+- The contact page opens the visitor's configured email application. Set a real `supportEmail` value before launch.
+- Database backup/restore features require MongoDB Database Tools (`mongodump` and `mongorestore`) to be installed on the API host.

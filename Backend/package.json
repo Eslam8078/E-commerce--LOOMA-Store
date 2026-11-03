@@ -1,7 +1,7 @@
 {
-  "name": "back",
+  "name": "looma-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "LOOMA fashion e-commerce REST API",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "seed": "node seed.js",
     "seed:reset": "node seed.js --reset"
   },
-  "keywords": [],
+  "keywords": ["ecommerce", "fashion", "angular", "express", "mongodb"],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

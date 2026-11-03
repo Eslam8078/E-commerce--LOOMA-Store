@@ -10,7 +10,7 @@
   padding: 20px 14px;
   color: #fff;
   background:
-    radial-gradient(circle at 0 0, rgb(99 91 255 / 22%), transparent 18rem),
+    radial-gradient(circle at 0 0, rgb(86 102 79 / 22%), transparent 18rem),
     linear-gradient(180deg, #171b31 0%, #101425 100%);
   border-right: 1px solid rgb(255 255 255 / 7%);
   box-shadow: 18px 0 50px rgb(18 22 40 / 12%);
@@ -44,15 +44,15 @@
   position: absolute;
   left: -1px;
   border-radius: 99px;
-  background: #a59cff;
+  background: #a9b79f;
   transition: height .2s ease;
 }
 .nav-item:hover { color: #fff; background: rgb(255 255 255 / 6%); transform: translateX(3px); }
 .nav-item.active {
   color: #fff;
-  background: linear-gradient(135deg, rgb(99 91 255 / 90%), rgb(117 108 255 / 62%));
+  background: linear-gradient(135deg, rgb(86 102 79 / 90%), rgb(137 151 127 / 62%));
   border-color: rgb(255 255 255 / 9%);
-  box-shadow: 0 12px 28px rgb(99 91 255 / 22%);
+  box-shadow: 0 12px 28px rgb(86 102 79 / 22%);
 }
 .nav-item.active::before { height: 22px; }
 .nav-icon { width: 23px; min-width: 23px; display: inline-grid; place-items: center; font-size: .95rem; }

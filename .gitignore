@@ -1,0 +1,26 @@
+# Dependencies
+**/node_modules/
+
+# Environment and secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build output and caches
+**/dist/
+**/.angular/
+**/coverage/
+**/tmp/
+**/temp/
+
+# Runtime files
+Backend/logs/
+Backend/uploads/*
+!Backend/uploads/.gitkeep
+Backend/backups/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

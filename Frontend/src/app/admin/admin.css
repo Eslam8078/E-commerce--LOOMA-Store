@@ -51,13 +51,13 @@
 }
 .notif-link:hover {
   color: var(--primary-dark);
-  border-color: rgb(99 91 255 / 22%);
+  border-color: rgb(86 102 79 / 22%);
   background: var(--primary-soft);
 }
 .admin-content {
   flex: 1;
   padding: 30px;
-  background: radial-gradient(circle at 100% 0, rgb(99 91 255 / 4%), transparent 24rem), var(--bg);
+  background: radial-gradient(circle at 100% 0, rgb(86 102 79 / 4%), transparent 24rem), var(--bg);
 }
 @media (max-width: 768px) {
   .admin-topbar {
