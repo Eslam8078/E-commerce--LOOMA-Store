@@ -31,5 +31,7 @@ testem.log
 /typings
 __screenshots__/
 
+/Frontend/src/environment
+
 .DS_Store
 Thumbs.db
