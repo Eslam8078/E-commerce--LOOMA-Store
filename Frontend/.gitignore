@@ -1,37 +1,44 @@
 
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Build outputs
+**/dist/
+**/tmp/
+**/out-tsc/
+**/bazel-out/
+**/node_modules/
 
-/node_modules
+# Logs
 npm-debug.log
 yarn-error.log
+**/connect.lock
+**/libpeerconnection.log
+testem.log
 
+# IDEs
 .idea/
 .project
 .classpath
 .c9/
 .settings/
-
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/mcp.json
-.history/*
+.history/
 
-/.angular/cache
+# Angular
+.angular/cache/
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
 
-/Frontend/src/environment
+# Testing
+**/coverage/
+**/typings/
+**/__screenshots__/
 
+# Environment
+**/Frontend/src/environment/
+
+# OS
 .DS_Store
 Thumbs.db
